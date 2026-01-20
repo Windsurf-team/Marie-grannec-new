@@ -24,7 +24,6 @@
       font-family:var(--font-body);
       color:var(--text-color);
       background:#fff;
-      line-height:1.6;
     }
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
@@ -70,7 +69,7 @@
       height:80vh;
       background:
         linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
-        url("expositions-hero.jpg");
+        url("images/kosmos-tableau.jpg");
       background-size:cover;
       background-position:center;
       display:flex;
@@ -216,6 +215,27 @@
   <div class="container">
     <div class="expo-list">
 
+        
+<!-- NOUVELLE EXPO -->
+<div class="expo-row" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 80px;">
+
+  <!-- TEXTE AU-DESSUS -->
+  <div class="expo-text" style="text-align: center; max-width: 700px; margin-bottom: 30px;">
+    <span class="title">Rencontres des auteurs et artistes peintres</span>
+    <div class="meta">
+      <div>25 - 26 mai 2024</div>
+      <div>La Chartreuse Saint André</div>
+      <div>33200 Bordeaux Caudéran</div>
+    </div>
+  </div>
+
+  <!-- IMAGE EN DESSOUS -->
+  <div class="expo-media" style="display: flex; justify-content: center;">
+    <img class="poster" src="images/expo.jpeg" alt="Rencontres des auteurs et artistes peintres">
+  </div>
+
+</div>
+
 
 <!-- 1 -->
 <div class="expo-row" style="display: flex; justify-content: center; align-items: center; min-height: 260px;">
@@ -259,36 +279,43 @@
         </div>
       </div>
 
-    <!-- 3 : TEXTE CENTRÉ -->
-<div class="expo-row" style="display: flex; justify-content: center; margin-bottom: 60px;">
-  <div class="expo-text" style="text-align: center; max-width: 700px;">
-    <span class="title">« Art / Covid »</span>
-    <div class="meta">
-      <div>Du 8 mars au 2 avril 2021</div>
-      <div>Halle des Chartrons</div>
-    </div>
-  </div>
-</div>
-
-<!-- 3 : IMAGE + VIDÉO EN DESSOUS -->
-<div class="expo-row" style="grid-template-columns: 1fr 1fr; align-items: center;">
+  <!-- 3 : IMAGE + TEXTE + VIDÉO -->
+<div class="expo-row" style="grid-template-columns: 1fr 1fr; align-items: center; margin-bottom: 60px;">
   
   <!-- IMAGE À GAUCHE -->
   <div class="expo-media" style="justify-content: center;">
     <img class="artwork" src="images/En-residence-a-la-Halle-des-Chartrons-.jpg" alt="Art / Covid">
   </div>
 
-  <!-- VIDÉO À DROITE -->
-<div class="expo-media" style="justify-content: center;">
-  <div class="video">
-    <video controls autoplay muted loop playsinline>
-      <source src="images/3929271.mp4reportage-France3-artcovid.mp4" type="video/mp4">
-      Ton navigateur ne supporte pas la lecture vidéo.
-    </video>
+  <!-- TEXTE + VIDÉO À DROITE -->
+  <div class="expo-media" style="flex-direction: column; align-items: center;">
+
+    <!-- TEXTE AU-DESSUS DE LA VIDÉO -->
+    <div class="expo-text" style="text-align: center; max-width: 700px; margin-bottom: 20px;">
+      <span class="title">« Art / Covid »</span>
+      <div class="meta">
+        <div>Du 8 mars au 2 avril 2021</div>
+        <div>Halle des Chartrons</div>
+      </div>
+    </div>
+
+   <!-- VIDÉO -->
+<div class="video">
+  <video controls autoplay muted loop playsinline>
+    <source src="images/3929271.mp4reportage-France3-artcovid.mp4" type="video/mp4">
+    Ton navigateur ne supporte pas la lecture vidéo.
+  </video>
+</div>
+
+<!-- CRÉDITS -->
+<div style="margin-top: 10px; text-align: center; color: #777; font-size: 0.85rem;">
+  <div>France3 artcovid</div>
+  <div>Copyright : Tous droits réservés France 3</div>
+</div>
+
   </div>
 </div>
 
-</div>
 
 
        <!-- 1 -->
@@ -306,7 +333,7 @@
         </div>
       </div>
 
-    <!-- 3 -->
+   <!-- 3 -->
 <div class="expo-row">
   <div class="expo-text">
     <span class="title">« Origines »</span>
@@ -317,15 +344,25 @@
     </div>
   </div>
 
-  <div class="expo-media">
+  <!-- COLONNE VIDÉO -->
+  <div class="expo-media" style="display: flex; flex-direction: column; align-items: center;">
+    
+    <!-- VIDÉO -->
     <div class="video">
       <video controls autoplay muted loop playsinline>
         <source src="images/sujetavec-lancement.mp4" type="video/mp4">
         Ton navigateur ne supporte pas la lecture vidéo.
       </video>
     </div>
+
+    <!-- CRÉDIT EN DESSOUS (DANS LE FLUX) -->
+    <div style="margin-top: 10px; text-align: center; color: #777; font-size: 0.85rem;">
+      Copyright : Tous droits réservés France 3
+    </div>
+
   </div>
 </div>
+
       
 
       <!-- 1 -->
