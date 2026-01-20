@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marie Grannec - Biographie</title>
+
+  <!-- Même typos que ton index -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- VARIABLES & RESET (copié de ton index) --- */
+    :root {
+      --primary-color: #387C88; /* bleu canard */
+      --text-color: #333333;
+      --light-bg: #f9f9f9;
+      --white: #ffffff;
+      --font-title: 'Playfair Display', serif;
+      --font-body: 'Lato', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-color);
+      background-color: var(--white);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* --- NAVIGATION (identique index) --- */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(5px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      z-index: 1000;
+    }
+
+    .logo { display: flex; align-items: center; gap: 15px; }
+
+    .logo-circle {
+      width: 45px;
+      height: 45px;
+      border: 2px solid var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-color);
+      font-weight: bold;
+      font-family: var(--font-body);
+    }
+
+    .logo-text h1 {
+      font-family: var(--font-body);
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .logo-text span {
+      font-size: 0.8rem;
+      color: #777;
+      font-weight: 300;
+    }
+
+    .nav-links { display: flex; gap: 30px; }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+    .nav-links a:hover { color: var(--primary-color); }
+
+    /* --- HERO (même taille que ton index : 80vh) --- */
+    .hero {
+      height: 80vh; /* EXACTEMENT comme ton index */
+      background:
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+        url('https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .hero h2 {
+      font-family: var(--font-title);
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    /* --- SECTIONS GÉNÉRALES (même logique que ton index) --- */
+    section { padding: 80px 5%; }
+
+    .section-title {
+      text-align: center;
+      font-family: var(--font-body);
+      color: var(--primary-color);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 60px;
+      font-size: 1.5rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 2px;
+      background: var(--primary-color);
+      margin: 15px auto 0;
+    }
+
+    /* --- BOUTON (copié index) --- */
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+    .btn:hover { background-color: #2a606a; }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid white;
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* --- PAGE BIO (layout) --- */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .block { background: var(--white); }
+    .block.light { background: var(--light-bg); }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .text p {
+      margin-bottom: 18px;
+      text-align: justify;
+      font-size: 0.98rem;
+    }
+
+    .portrait {
+      width: 100%;
+      max-width: 320px;
+      margin-left: auto;
+      border-radius: 2px;
+      box-shadow: 10px 10px 0px var(--primary-color);
+      object-fit: cover;
+    }
+
+    .art-round {
+      width: 100%;
+      max-width: 320px;
+      margin-left: auto;
+      border-radius: 2px;
+      background: #eee;
+      border: 1px solid #eee;
+      object-fit: cover;
+    }
+
+    .quote {
+      margin: 22px 0 0;
+      padding-left: 16px;
+      border-left: 2px solid rgba(56,124,136,0.35);
+      color: #4b4b4b;
+      font-size: 0.95rem;
+    }
+    .quote p { margin-bottom: 12px; text-align: left; }
+    .quote .sig {
+      font-weight: 700;
+      color: #555;
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    .split-quotes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 35px;
+    }
+
+    .media-row {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 30px;
+      margin-top: 35px;
+      align-items: start;
+    }
+
+    .media-img {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 2px;
+      background: #eee;
+      object-fit: cover;
+      box-shadow: 10px 10px 0px rgba(56,124,136,0.25);
+    }
+
+    /* --- DÉCOUVRIR --- */
+    .discover-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+      justify-items: center;
+    }
+
+    .discover-card {
+      width: 100%;
+      max-width: 380px;
+      background: white;
+      transition: transform 0.3s ease;
+    }
+    .discover-card:hover { transform: translateY(-5px); }
+
+    .discover-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      background: #eee;
+      margin-bottom: 15px;
+    }
+
+    .discover-card .label {
+      text-align: center;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      color: #555;
+    }
+
+    .btn-container { text-align: center; }
+
+    /* --- FOOTER (identique index) --- */
+    footer {
+      background-color: #333;
+      color: #ccc;
+      padding: 60px 5%;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col a:hover { color: var(--primary-color); }
+
+    .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+    .social-box {
+      width: 30px;
+      height: 30px;
+      background: #555;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 0.8rem;
+      border-top: 1px solid #444;
+      padding-top: 20px;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 900px) {
+      .two-col, .media-row, .split-quotes, .discover-grid { grid-template-columns: 1fr; }
+      .portrait, .art-round, .media-img { margin: 0 auto; max-width: 520px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h2 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">
+      <div class="logo-circle">MG</div>
+      <div class="logo-text">
+        <h1>Marie Grannec</h1>
+        <span>Artiste Peintre</span>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="#biographie">Biographie</a>
+      <a href="#tableaux">Tableaux</a>
+      <a href="#expositions">Expositions</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HEADER (même taille que ton index) -->
+  <header class="hero">
+    <h2>Biographie</h2>
+    <p>À propos de l'artiste, son parcours et son approche.</p>
+    <a href="#biographie" class="btn btn-ghost">Lire</a>
+  </header>
+
+  <!-- A PROPOS -->
+  <section id="biographie" class="block">
+    <div class="container">
+      <h2 class="section-title">À propos de l'artiste</h2>
+
+      <div class="two-col">
+        <div class="text">
+          <p>
+            Bretonne née à Paris, c’est en quête de lumière que Marie Grannec s’est installée à Bordeaux. De jour comme de lune, le fleuve argent transporte son imaginaire, au-delà des quais et des dunes. Ses premiers pas d’artiste s’exercent sur le visage et le corps. Maquilleuse à France Télévision, elle modèle, efface et redessine la beauté des années, s’empare des reflets, élimine les ombres, armée de ses pinceaux, pigments et paillettes, pour rendre à chaque être sa lumière originelle. Là où ses maîtres font naître les corps, elle dessine sur la peau, le jour.
+          </p>
+          <p>
+            Remplace ces paragraphes par le texte officiel. J’ai gardé une densité et un rythme proches
+            de ta capture : propre, aéré, aligné, sans artifices.
+          </p>
+          <p>
+            Elle explore la matière, les pigments et les transparences, pour faire émerger des paysages,
+            des silhouettes, des fragments de mémoire.
+          </p>
+        </div>
+
+        <!-- Remplace par ta vraie photo portrait -->
+        <img class="portrait" src="images/photo-de-profil.jpg" alt="Portrait de Marie Grannec" />
+      </div>
+    </div>
+  </section>
+
+ <!-- SON APPROCHE -->
+<section class="block light" style="padding-bottom: 160px;">
+  <div class="container">
+    <h2 class="section-title">Son approche</h2>
+
+    <!-- TEXTE + IMAGE -->
+    <div class="two-col" style="align-items: center; margin-bottom: 120px;">
+      <div class="text">
+        <p>
+          « La nuit, son âme se libère et elle s’empare de la toile, œuvrant alors à redéfinir le monde.
+          Passionnée d’histoire de l’art, elle redevient étudiante en auditeur libre, à l’école des
+          Beaux-Arts de Bordeaux. Elle ne s’interdit pas d’aimer, du classique au digital, elle étudie
+          et se plonge dans l’expression des plus grands.
+        </p>
+
+        <p>
+          Ses maîtres resteront à ses yeux les magiciens de la couleur et des matières :
+          Nicolas de Staël, Mark Rothko, Vincent Van Gogh, Soulages.
+        </p>
+
+        <p>
+          En voyage entre deux mondes, Marie Grannec a choisi deux chemins d’expression,
+          l’abstraction et le figuratif. Comme si son regard focal portait une distance variable avec la terre.
+        </p>
+
+        <p>
+          Dans l’abstraction, le monde se lit d’en haut. Comme si l’artiste voyageait au-dessus des nuages,
+          plongeant dans la nuit sombre pour laisser apparaître une ville fantôme ou semblant survoler
+          une cité mystérieuse, dont les bâtisses flottantes se reflètent dans la mer rougeoyante.
+        </p>
+
+        <p>
+          Dans le monde du figuratif, un arbre se déploie sur une terre brûlée, un pont jaillit dans la
+          brume matinale, un ciel étoilé se reflète sur une bande d’asphalte bleue, des paysages,
+          toujours désertés par la vie. Un monde abandonné où émergent parfois les stigmates d’une
+          civilisation perdue… la statue de la liberté, l’icône Hollywoodienne Marilyn Monroe.
+        </p>
+
+        <p>
+          Pour Marie Grannec, la peinture est un voyage intemporel où la matière devient fluide,
+          où les couleurs intenses ou profondes prennent toute la place, rendant immortels les
+          paysages imaginaires, les destinations lointaines.
+        </p>
+
+        <div class="quote">
+          <p>
+            Là où l’homme s’efface, la nature vibrante reprend sa place.<br>
+            Monde perdu ou Eden imaginaire.
+          </p>
+          <div class="sig">— Marie Laure Hubert Nasser</div>
+        </div>
+      </div>
+
+      <img class="art-round" src="images/57925571556485.jpg" alt="Œuvre abstraite" />
+    </div>
+
+    <!-- IMAGE EXPO + CITATION -->
+    <div class="media-row" style="align-items: center; margin-bottom: 120px;">
+      <img class="media-img" src="images/Photo-galerie-.jpg" alt="Photo exposition" />
+
+      <div class="quote">
+        <p>
+          « J’ai choisi la peinture dite ‘abstraite’ pour la liberté totale qu’elle m’offre. Se libérer du réel, jouer avec les formes et les couleurs : voilà ce qui me plaît. L’intérêt que je porte depuis de nombreuses années à l’histoire de l’art – des grands classiques jusqu’aux formes les plus récentes de la création numérique- m’a aussi aidé à faire ce saut dans le vide. Une aventure que je ne regrette jamais et qui est une source constante de plaisir, parce que c’est une libération autant qu’un combat. »
+
+        </p>
+        <div class="sig">— Marie Grannec</div>
+      </div>
+    </div>
+
+    <!-- DEUX CITATIONS -->
+    <div class="split-quotes" style="margin-bottom: 120px;">
+      <div class="quote">
+        <p>
+          « Peindre, c’est combattre le vide, nier l’ennui. Avant, il n’y a rien qu’une toile vierge et silencieuse. Peindre, c’est proposer, inviter à regarder, à voir. Marie Grannec fait partie de ces faiseurs discrets dont les œuvres sont des odes au mouvement. Sa peinture est vivante et sobre, c’est un message direct et pur. Le vent nous effleure, le sable d’un désert inconnu semble sortir d’une toile. Puissiez-vous prendre plaisir à partager son univers, dans chacune de ses toiles se cache un mystère. »
+        </p>
+        <div class="sig">— Stéphane Chaubert · Artiste peintre, performeur</div>
+      </div>
+
+      <div class="quote">
+        <p>
+         « Émergences, éphémères, origines, c’est là-haut ou au-dedans, ou au-delà, dans l’imaginaire, une idée de suspension dans l’espace et dans le temps. Avec la lumière qui s’accroche aux pigments on passe de la terre à l’éther, de la matière à l’effacement. Il n’y a pas nécessairement de référence au connu; c’est la matière avant la forme qui peut être à la fois éphémère et inscrite dans le temps. D’une gestuelle libre et instinctive, l’esthétique pure est oubliée, place à la densité des pigments jetés sur la toile… sans fin. »
+        </p>
+        <div class="sig">— Francy Chhan · Compositions sonores / vidéos</div>
+      </div>
+    </div>
+
+    <!-- DERNIÈRE IMAGE + TEXTE -->
+   <div class="media-row" style="align-items: center; margin-top: 40px;">
+  <img class="media-img" src="images/578914825979306-e1552133043548.jpg" alt="Tableau" />
+
+      <div class="quote">
+        <p>
+         « Marie part avec ses pinceaux, elle emporte ses rêves et ses couleurs. On ne sait plus trop si elle marche sur le sol ou dans le ciel, parfois elle joue et accapare l’eau et le feu. Elle marche, elle s’arrête, elle semble réfléchir, elle médite. Elle se remet en route. Maquilleuse à France Telévision, elle estompe, souligne,dessine ou redessine les êtres, leur visage, délicatement, simplement pour qu’ils soient un peu plus eux-mêmes ou simplement lisibles. Sa présence,son travail aux pinceaux c’est une compréhension intuitive de l’autre, puis une connivence subtile avec lumières, matières et couleurs pour trouver la note juste, la juste musicalité du visage qui lui est confié. Elle regarde l’horizon, elle regarde au dedans. Elle prend ses pinceaux. Elle saisit une toile et choisit ses couleurs. Il n’y a plus de visages, devenus atmosphères, paysages. Le monde à présent a des particularités étranges. Vrai ou faux? Le réel et les rêves cohabitent dans les peintures de Marie Grannec. Les formes se construisent et s’éffacent, des villes surgissent et se gomment, nos atouts repérables passent du connu à l’inconnu. On croyait reconnaître et l’on est fasciné par la disparition soudaine. Ainsi apparaissent d’autres émotions et d’autres mondes.
+        </p>
+        <p>
+         Marie Grannec ne fait pas de phrase, elle peint. A travers l’huile gavée de pigments colorés, entre la toile et nous, naissent d’autres mondes dont nous savons intimement qu’ils sont extrêment proches et absolument lointains. Avec délicatesse, elle nous mène dans la force des rêves, des espaces inconnus et doux qui pulvérisent nos peurs. »
+        </p>
+        <div class="sig">— Paulo Vene… · Photographe, écrivain</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- DECOUVRIR -->
+  <section class="block" id="expositions">
+    <div class="container">
+      <h2 class="section-title">Découvrez également</h2>
+
+      <div class="discover-grid">
+        <div class="discover-card">
+          <img src="images/Exposition-marie-grannec-origines.jpg" alt="Les expositions" />
+          <div class="label">Les expositions</div>
+          <div class="btn-container">
+            <a class="btn" href="#">En savoir plus</a>
+          </div>
+        </div>
+
+        <div class="discover-card" id="tableaux">
+          <img src="images/photo-Claire.png" alt="Les tableaux" />
+          <div class="label">Les tableaux</div>
+          <div class="btn-container">
+            <a class="btn" href="#">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-col">
+        <div class="logo">
+          <div class="logo-circle" style="border-color: #fff; color: #fff;">MG</div>
+          <div class="logo-text">
+            <h1 style="color: #fff;">Marie Grannec</h1>
+          </div>
+        </div>
+        <p style="margin-top: 15px; font-size: 0.9rem;">Artiste peintre contemporaine.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Plan du site</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="#biographie">Biographie</a></li>
+          <li><a href="#tableaux">Tableaux</a></li>
+          <li><a href="#expositions">Expositions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Coordonnées</h4>
+        <ul>
+          <li>Tél : 06 13 55 37 90</li>
+          <li>Email : marie.grannec33@gmail.com</li>
+        </ul>
+        <div class="social-icons">
+          <a href="#" class="social-box" style="background: #3b5998;">f</a>
+          <a href="#" class="social-box" style="background: #d62976;">in</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      &copy; 2026 Marie Grannec. Tous droits réservés.
+    </div>
+  </footer>
+
+</body>
+</html>

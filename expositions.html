@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marie Grannec – Expositions</title>
+
+  <!-- Typos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color:#387C88;
+      --text-color:#333;
+      --white:#fff;
+      --font-title:'Playfair Display', serif;
+      --font-body:'Lato', sans-serif;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:var(--font-body);
+      color:var(--text-color);
+      background:#fff;
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    /* NAV */
+    nav{
+      position:sticky;
+      top:0;
+      background:rgba(255,255,255,.95);
+      padding:1rem 5%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid #eee;
+      z-index:1000;
+    }
+    .logo{display:flex;align-items:center;gap:15px}
+    .logo-circle{
+      width:45px;height:45px;
+      border:2px solid var(--primary-color);
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--primary-color);
+      font-weight:700;
+    }
+    .logo-text h1{
+      font-size:1.1rem;
+      color:var(--primary-color);
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+    .logo-text span{font-size:.8rem;color:#777}
+    .nav-links{display:flex;gap:30px}
+    .nav-links a{
+      font-size:.9rem;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      color:#555;
+    }
+
+    /* HERO */
+    .hero{
+      height:80vh;
+      background:
+        linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
+        url("expositions-hero.jpg");
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:#fff;
+      padding:0 20px;
+    }
+    .hero h2{
+      font-family:var(--font-title);
+      font-size:3.5rem;
+      font-style:italic;
+      margin-bottom:20px;
+      font-weight:400;
+    }
+    .hero p{
+      max-width:650px;
+      font-size:1.1rem;
+      margin-bottom:30px;
+      font-weight:300;
+    }
+    .btn{
+      padding:12px 30px;
+      border:1px solid #fff;
+      color:#fff;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      font-size:.9rem;
+    }
+
+    /* CONTENT */
+    section{padding:90px 5%}
+    .container{max-width:1200px;margin:0 auto}
+
+    .expo-list{display:grid;gap:100px}
+
+    .expo-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:80px;
+      align-items:center;
+    }
+    .expo-row.reverse .expo-text{order:2}
+    .expo-row.reverse .expo-media{order:1}
+
+    .expo-text{
+      text-align:center;
+      color:#6f6f6f;
+      font-size:.95rem;
+    }
+    .expo-text .title{
+      display:block;
+      font-weight:700;
+      color:#444;
+      margin-bottom:8px;
+    }
+    .expo-text .meta div{margin-bottom:6px}
+
+    .expo-media{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .poster,.artwork{
+      width:min(320px,100%);
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
+    }
+    .video{
+      width:min(520px,100%);
+      aspect-ratio:16/9;
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
+    }
+    .video iframe{width:100%;height:100%;border:0}
+
+    /* FOOTER */
+    .teal-band{height:26px;background:var(--primary-color)}
+    footer{
+      background:#333;
+      color:#ccc;
+      padding:60px 5%;
+    }
+    .footer-content{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:40px;
+    }
+    .footer-col h4{
+      color:#fff;
+      text-transform:uppercase;
+      margin-bottom:20px;
+      font-size:.9rem;
+    }
+    .copyright{
+      margin-top:50px;
+      text-align:center;
+      font-size:.8rem;
+      border-top:1px solid #444;
+      padding-top:20px;
+    }
+
+    @media(max-width:900px){
+      .expo-row{grid-template-columns:1fr;gap:40px}
+      .expo-row.reverse .expo-text,
+      .expo-row.reverse .expo-media{order:initial}
+      .hero h2{font-size:2.4rem}
+    }
+    @media(max-width:768px){
+      .nav-links{display:none}
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-circle">MG</div>
+    <div class="logo-text">
+      <h1>Marie Grannec</h1>
+      <span>Artiste Peintre</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="biographie.html">Biographie</a>
+    <a href="tableaux.html">Tableaux</a>
+    <a href="expositions.html">Expositions</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <h2>Les expositions</h2>
+  <p>Affiches, événements, résidences et publications autour du travail de l’artiste.</p>
+  <a href="#expositions" class="btn">Découvrir</a>
+</header>
+
+<section id="expositions">
+  <div class="container">
+    <div class="expo-list">
+
+
+<!-- 1 -->
+<div class="expo-row" style="display: flex; justify-content: center; align-items: center; min-height: 260px;">
+  <div class="expo-text" style="text-align: center; max-width: 700px;">
+    <span class="title">« Rencontre avec les auteurs et les artistes peintres »</span>
+    <div class="meta">
+      <div>Du 21 et 22 mai 2022</div>
+      <div>Le Chartreuse Saint Andre</div>
+      <div>33200 Bordeaux Caudéran</div>
+    </div>
+  </div>
+</div>
+
+      <!-- 1 -->
+      <div class="expo-row">
+        <div class="expo-text">
+          <span class="title">« Résonance »</span>
+          <div class="meta">
+            <div>Du 12 au 22 mai 2022</div>
+            <div>Halle des Chartrons</div>
+            <div>33000 Bordeaux</div>
+          </div>
+        </div>
+        <div class="expo-media">
+          <img class="poster" src="images/oeuvre-evenement.jpg">
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="expo-row reverse">
+        <div class="expo-text">
+          <span class="title">« Again »</span>
+          <div class="meta">
+            <div>Du 17 au 29 août 2021</div>
+            <div>Carré des Arts</div>
+            <div>Bordeaux</div>
+          </div>
+        </div>
+        <div class="expo-media">
+          <img class="poster" src="images/export-affiche-def-Coti-pdf.jpg">
+        </div>
+      </div>
+
+    <!-- 3 : TEXTE CENTRÉ -->
+<div class="expo-row" style="display: flex; justify-content: center; margin-bottom: 60px;">
+  <div class="expo-text" style="text-align: center; max-width: 700px;">
+    <span class="title">« Art / Covid »</span>
+    <div class="meta">
+      <div>Du 8 mars au 2 avril 2021</div>
+      <div>Halle des Chartrons</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3 : IMAGE + VIDÉO EN DESSOUS -->
+<div class="expo-row" style="grid-template-columns: 1fr 1fr; align-items: center;">
+  
+  <!-- IMAGE À GAUCHE -->
+  <div class="expo-media" style="justify-content: center;">
+    <img class="artwork" src="images/En-residence-a-la-Halle-des-Chartrons-.jpg" alt="Art / Covid">
+  </div>
+
+  <!-- VIDÉO À DROITE -->
+  <div class="expo-media" style="justify-content: center;">
+    <div class="video">
+      <iframe
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+</div>
+
+
+       <!-- 1 -->
+      <div class="expo-row">
+        <div class="expo-media">
+          <img class="poster" src="images/photo-Claire.png">
+        </div>
+        <div class="expo-text">
+          <span class="title">« Rencontre avec les auteurs et les arustes peintres »</span>
+          <div class="meta">
+            <div>30 et 31 mars 2019</div>
+            <div>La Chartreuse Saint Andre</div>
+            <div>Bordeaux Caudéran</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="expo-row">
+        <div class="expo-text">
+          <span class="title">« Origines »</span>
+          <div class="meta">
+            <div>4 mai – 1 juillet 2018</div>
+            <div>Institut Bernard Magrez</div>
+            <div>Bordeaux</div>
+          </div>
+        </div>
+        <div class="expo-media">
+          <div class="video">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- 1 -->
+      <div class="expo-row">
+        <div class="expo-media">
+          <img class="poster" src="images/kosmos-tableau.jpg">
+        </div>
+        <div class="expo-text">
+          <span class="title">« 8 Mars 8 Femmes »</span> 
+          <div class="meta">
+            <div>du 1 au 9 Mars 2014</div>
+            <div>Salle Paul Broca</div>
+            <div>Sainte-Foy-la-Grande</div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 3 -->
+      <div class="expo-row">
+        <div class="expo-text">
+          <span class="title">« Tribal »</span>
+          <div class="meta">
+            <div> Du 5 au 29 Mars</div>
+            <div> 48 Bis Avenue de la Libération Charles de Gaulle</div>
+            <div>Le Bouscat</div>
+          </div>
+        </div>
+        <div class="expo-media">
+          <div class="video">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      
+
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>Marie Grannec</h4>
+      <p>Artiste peintre contemporaine</p>
+    </div>
+    <div class="footer-col">
+      <h4>Plan du site</h4>
+      <ul>
+        <li>Accueil</li><li>Biographie</li><li>Tableaux</li><li>Expositions</li><li>Contact</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Coordonnées</h4>
+      <p>06 13 55 37 90<br>mariegrannec33@gmail.com</p>
+    </div>
+  </div>
+  <div class="copyright">© 2026 Marie Grannec</div>
+</footer>
+
+</body>
+</html>

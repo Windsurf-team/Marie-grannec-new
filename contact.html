@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marie Grannec - Contact</title>
+
+  <!-- Typos du site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- VARIABLES & RESET (même style que ton index) --- */
+    :root {
+      --primary-color: #387C88;
+      --text-color: #333333;
+      --light-bg: #f9f9f9;
+      --white: #ffffff;
+      --font-title: 'Playfair Display', serif;
+      --font-body: 'Lato', sans-serif;
+      --border: #e9e9e9;
+      --field-bg: #f3f3f3;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text-color);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    img { max-width: 100%; display: block; }
+
+    /* --- NAV (identique) --- */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(5px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      z-index: 1000;
+    }
+    .logo { display: flex; align-items: center; gap: 15px; }
+    .logo-circle {
+      width: 45px; height: 45px;
+      border: 2px solid var(--primary-color);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary-color);
+      font-weight: bold;
+      font-family: var(--font-body);
+    }
+    .logo-text h1 {
+      font-family: var(--font-body);
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+    .logo-text span { font-size: 0.8rem; color: #777; font-weight: 300; }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #555;
+    }
+    .nav-links a:hover { color: var(--primary-color); }
+
+    /* --- BOUTONS (comme tes autres pages) --- */
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover { background-color: #2a606a; }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid #fff;
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* --- HERO (MODIFIÉ : identique au header standard de ton site) --- */
+    .hero {
+      height: 80vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+        url("contact-hero.jpg"); /* remplace par ton image */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .hero h2 {
+      font-family: var(--font-title);
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      font-style: italic;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    /* --- SECTIONS --- */
+    section { padding: 80px 5%; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* --- CONTACT LAYOUT --- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .contact-block-title {
+      font-weight: 700;
+      color: #666;
+      margin-bottom: 18px;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    .contact-lines {
+      display: grid;
+      gap: 14px;
+      color: #666;
+      font-size: 0.95rem;
+    }
+    .contact-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .icon {
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--border);
+      background: #fff;
+      display: grid;
+      place-items: center;
+      border-radius: 3px;
+      color: #888;
+      flex: 0 0 auto;
+      font-size: 13px;
+    }
+
+    .social-wrap { margin-top: 40px; }
+    .social-title {
+      font-weight: 700;
+      color: #666;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    .fb { background: #3b5998; }
+    .ig { background: #d62976; }
+
+    /* --- FORM --- */
+    form { width: 100%; }
+    .form-title {
+      font-weight: 700;
+      color: #666;
+      margin-bottom: 18px;
+      font-size: 1rem;
+      text-align: left;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--field-bg);
+      padding: 14px 14px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      border-radius: 2px;
+    }
+    .field::placeholder { color: #888; }
+
+    .field:focus {
+      border-color: rgba(56,124,136,0.6);
+      background: #f7f7f7;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+    textarea.field { min-height: 140px; resize: vertical; }
+
+    .form-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 18px;
+      color: #777;
+      font-size: 0.85rem;
+    }
+
+    /* --- FOOTER bande canard + footer sombre (comme ton index) --- */
+    .teal-band { height: 26px; background: var(--primary-color); }
+
+    footer {
+      background-color: #333;
+      color: #ccc;
+      padding: 60px 5%;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+    .footer-col ul { list-style: none; padding: 0; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col a:hover { color: var(--primary-color); }
+
+    .copyright {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 0.8rem;
+      border-top: 1px solid #444;
+      padding-top: 20px;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .form-grid { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 2.5rem; }
+      .hero p { font-size: 1rem; }
+      .form-foot { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">
+      <div class="logo-circle">MG</div>
+      <div class="logo-text">
+        <h1>Marie Grannec</h1>
+        <span>Artiste Peintre</span>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="biographie.html">Biographie</a>
+      <a href="tableaux.html">Tableaux</a>
+      <a href="expositions.html">Expositions</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HEADER (même style que les autres pages) -->
+  <header class="hero">
+    <h2>"Contact"</h2>
+    <p>Envoyer un message ou me retrouver sur les réseaux sociaux.</p>
+    <a href="#contact" class="btn btn-ghost">Écrire</a>
+  </header>
+
+  <!-- CONTACT CONTENT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- LEFT: Coordonnées + social -->
+        <div>
+          <div class="contact-block-title">Mes coordonnées de contact</div>
+
+          <div class="contact-lines">
+            <div class="contact-line">
+              <div class="icon">☎</div>
+              <div>06 13 55 37 90</div>
+            </div>
+            <div class="contact-line">
+              <div class="icon">✉</div>
+              <div>mariegrannec33@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="social-wrap">
+            <div class="social-title">Suivez-moi sur les réseaux sociaux</div>
+            <div class="social-icons">
+              <a class="social-btn fb" href="#" aria-label="Facebook">f</a>
+              <a class="social-btn ig" href="#" aria-label="Instagram">ig</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div>
+          <div class="form-title">Envoyer un message</div>
+
+          <form action="#" method="post">
+            <div class="form-grid">
+              <input class="field" type="text" name="nom" placeholder="Nom ou raison sociale *" required>
+              <input class="field" type="text" name="prenom" placeholder="Prénom">
+
+              <input class="field" type="email" name="email" placeholder="Adresse E-mail *" required>
+              <input class="field" type="tel" name="tel" placeholder="Téléphone">
+
+              <textarea class="field full" name="message" placeholder="Message *" required></textarea>
+            </div>
+
+            <div class="form-foot">
+              <div>Les champs assortis d'une * sont obligatoires.</div>
+              <button class="btn" type="submit">Envoyer</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <div class="logo">
+          <div class="logo-circle" style="border-color:#fff;color:#fff;">MG</div>
+          <div class="logo-text">
+            <h1 style="color:#fff;">Marie Grannec</h1>
+          </div>
+        </div>
+        <p style="margin-top: 15px; font-size: 0.9rem;">Artiste peintre contemporaine.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Plan du site</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="biographie.html">Biographie</a></li>
+          <li><a href="tableaux.html">Tableaux</a></li>
+          <li><a href="expositions.html">Expositions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Coordonnées</h4>
+        <ul>
+          <li>Tél : 06 13 55 37 90</li>
+          <li>Email : mariegrannec33@gmail.com</li>
+        </ul>
+        <div class="social-icons">
+          <a class="social-btn fb" href="#" aria-label="Facebook">f</a>
+          <a class="social-btn ig" href="#" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      &copy; 2026 Marie Grannec. Tous droits réservés.
+    </div>
+  </footer>
+
+</body>
+</html>
