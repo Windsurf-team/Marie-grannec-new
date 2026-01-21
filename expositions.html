@@ -66,6 +66,33 @@
       letter-spacing:1px;
       color:#555;
     }
+    .nav-links a:hover{color:var(--primary-color)}
+
+    .nav-toggle{
+      display:none;
+      width:44px;
+      height:44px;
+      border:1px solid #eee;
+      background:transparent;
+      border-radius:6px;
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:4px;
+    }
+
+    .nav-toggle__bar{
+      width:18px;
+      height:2px;
+      background:#555;
+      display:block;
+      transition:transform .2s ease, opacity .2s ease;
+    }
+
+    nav.nav-open .nav-toggle__bar:nth-child(1){transform:translateY(6px) rotate(45deg)}
+    nav.nav-open .nav-toggle__bar:nth-child(2){opacity:0}
+    nav.nav-open .nav-toggle__bar:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
     /* HERO */
     .hero{
@@ -198,7 +225,23 @@
       .hero h2{font-size:2.4rem}
     }
     @media(max-width:768px){
-      .nav-links{display:none}
+      .nav-toggle{display:flex}
+
+      .nav-links{
+        display:none;
+        position:absolute;
+        top:72px;
+        left:0;
+        right:0;
+        background:rgba(255,255,255,.98);
+        border-bottom:1px solid #eee;
+        padding:14px 5%;
+        flex-direction:column;
+        gap:16px;
+      }
+
+      nav.nav-open .nav-links{display:flex}
+      .nav-links a{padding:6px 0}
     }
   </style>
 </head>
@@ -213,13 +256,19 @@
       <span>Artiste Peintre</span>
     </div>
   </a>
-  <div class="nav-links">
+  <div class="nav-links" id="primary-navigation">
     <a href="index.html">Accueil</a>
     <a href="biographie.html">Biographie</a>
     <a href="tableaux.html">Tableaux</a>
     <a href="expositions.html">Expositions</a>
     <a href="contact.html">Contact</a>
   </div>
+
+  <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="primary-navigation" aria-expanded="false">
+    <span class="nav-toggle__bar"></span>
+    <span class="nav-toggle__bar"></span>
+    <span class="nav-toggle__bar"></span>
+  </button>
 </nav>
 
 <header class="hero">
@@ -465,6 +514,43 @@
             &copy; 2026 Marie Grannec. Tous droits réservés.
         </div>
     </footer>
+
+  <script>
+    (() => {
+      const nav = document.querySelector('nav');
+      if (!nav) return;
+      const toggle = nav.querySelector('.nav-toggle');
+      const menu = nav.querySelector('.nav-links');
+      if (!toggle || !menu) return;
+
+      const setExpanded = (expanded) => {
+        toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        toggle.setAttribute('aria-label', expanded ? 'Fermer le menu' : 'Ouvrir le menu');
+      };
+
+      const closeMenu = () => {
+        nav.classList.remove('nav-open');
+        setExpanded(false);
+      };
+
+      toggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('nav-open');
+        setExpanded(isOpen);
+      });
+
+      menu.addEventListener('click', (event) => {
+        if (event.target.closest('a')) closeMenu();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 769px)').matches) closeMenu();
+      });
+    })();
+  </script>
 
 </body>
 </html>
