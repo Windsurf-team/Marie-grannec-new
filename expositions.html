@@ -8,7 +8,7 @@
   <!-- Typos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -43,6 +43,8 @@
       z-index: 1000;
     }
     .logo{display:flex;align-items:center;gap:15px}
+
+    .logo-img{height:48px;width:auto;max-width:260px;display:block;object-fit:contain}
     .logo-circle{
       width:45px;height:45px;
       border:2px solid var(--primary-color);
@@ -116,13 +118,13 @@
       font-size:3.5rem;
       font-style:italic;
       margin-bottom:20px;
-      font-weight:400;
+      font-weight:600;
     }
     .hero p{
       max-width:650px;
       font-size:1.1rem;
       margin-bottom:30px;
-      font-weight:300;
+      font-weight:400;
     }
     .btn{
       padding:12px 30px;
@@ -155,7 +157,7 @@
     }
     .expo-text .title{
       display:block;
-      font-weight:700;
+      font-weight:800;
       color:#444;
       margin-bottom:8px;
     }
@@ -250,11 +252,7 @@
 
 <nav>
   <a class="logo" href="index.html" aria-label="Aller à l'accueil">
-    <div class="logo-circle">MG</div>
-    <div class="logo-text">
-      <h1>Marie Grannec</h1>
-      <span>Artiste Peintre</span>
-    </div>
+    <img class="logo-img" src="images/Logo-bleu-pc.png" alt="Marie Grannec — Artiste Peintre">
   </a>
   <div class="nav-links" id="primary-navigation">
     <a href="index.html">Accueil</a>
@@ -282,25 +280,7 @@
     <div class="expo-list">
 
         
-<!-- NOUVELLE EXPO -->
-<div class="expo-row" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 80px;">
 
-  <!-- TEXTE AU-DESSUS -->
-  <div class="expo-text" style="text-align: center; max-width: 700px; margin-bottom: 30px;">
-    <span class="title">Rencontres des auteurs et artistes peintres</span>
-    <div class="meta">
-      <div>25 - 26 mai 2024</div>
-      <div>La Chartreuse Saint André</div>
-      <div>33200 Bordeaux Caudéran</div>
-    </div>
-  </div>
-
-  <!-- IMAGE EN DESSOUS -->
-  <div class="expo-media" style="display: flex; justify-content: center;">
-    <img class="poster" src="images/expo.jpeg" alt="Rencontres des auteurs et artistes peintres">
-  </div>
-
-</div>
 
 
 <!-- 1 -->
@@ -479,10 +459,7 @@
         <div class="footer-content">
             <div class="footer-col">
                 <a class="logo" href="index.html" aria-label="Aller à l'accueil">
-                    <div class="logo-circle" style="border-color: #fff; color: #fff;">MG</div>
-                    <div class="logo-text">
-                        <h1 style="color: #fff;">Marie Grannec</h1>
-                    </div>
+                  <img class="logo-img" src="images/Logo-blanc-pc.png" alt="Marie Grannec — Artiste Peintre">
                 </a>
                 <p style="margin-top: 15px; font-size: 0.9rem;">Artiste peintre contemporaine.</p>
             </div>

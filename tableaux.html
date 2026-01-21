@@ -8,7 +8,7 @@
   <!-- Typos du site -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -46,6 +46,14 @@
       z-index: 1000;
     }
     .logo { display: flex; align-items: center; gap: 15px; }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 260px;
+      display: block;
+      object-fit: contain;
+    }
     .logo-circle {
       width: 45px; height: 45px;
       border: 2px solid var(--primary-color);
@@ -144,7 +152,7 @@
       font-size: 3.5rem;
       margin-bottom: 20px;
       font-style: italic;
-      font-weight: 400;
+      font-weight: 600;
       text-transform: none;
       letter-spacing: 0;
     }
@@ -153,7 +161,7 @@
       max-width: 600px;
       font-size: 1.1rem;
       margin-bottom: 30px;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     /* --- SECTIONS --- */
@@ -221,7 +229,7 @@
 
     .work .title {
       display: block;
-      font-weight: 700;
+      font-weight: 800;
       color: #4f4f4f;
       margin-bottom: 4px;
     }
@@ -298,6 +306,37 @@
     }
 
     .lightbox__close:hover { background: rgba(0,0,0,0.55); }
+
+    .lightbox__loupe {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      height: 40px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.35);
+      color: rgba(255,255,255,0.92);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .lightbox__loupe:hover { background: rgba(0,0,0,0.55); }
+    .lightbox__loupe[aria-pressed="true"] {
+      background: rgba(56,124,136,0.65);
+      border-color: rgba(56,124,136,0.85);
+    }
+
+    .magnifier {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.85);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+      background-repeat: no-repeat;
+      pointer-events: none;
+      display: none;
+    }
 
     /* --- FOOTER --- */
     footer {
@@ -380,11 +419,7 @@
   <!-- NAV -->
   <nav>
     <a class="logo" href="index.html" aria-label="Aller à l'accueil">
-      <div class="logo-circle">MG</div>
-      <div class="logo-text">
-        <h1>Marie Grannec</h1>
-        <span>Artiste Peintre</span>
-      </div>
+      <img class="logo-img" src="images/Logo-bleu-pc.png" alt="Marie Grannec — Artiste Peintre">
     </a>
 
     <div class="nav-links" id="primary-navigation">
@@ -844,10 +879,7 @@
         <div class="footer-content">
             <div class="footer-col">
                 <a class="logo" href="index.html" aria-label="Aller à l'accueil">
-                    <div class="logo-circle" style="border-color: #fff; color: #fff;">MG</div>
-                    <div class="logo-text">
-                        <h1 style="color: #fff;">Marie Grannec</h1>
-                    </div>
+                  <img class="logo-img" src="images/Logo-blanc-pc.png" alt="Marie Grannec — Artiste Peintre">
                 </a>
                 <p style="margin-top: 15px; font-size: 0.9rem;">Artiste peintre contemporaine.</p>
             </div>
@@ -892,8 +924,10 @@
     <div id="lightbox" class="lightbox" aria-hidden="true">
       <div class="lightbox__backdrop" data-lightbox-close></div>
       <figure class="lightbox__content" role="dialog" aria-modal="true" aria-label="Agrandissement du tableau">
+        <button type="button" class="lightbox__loupe" aria-label="Activer la loupe" aria-pressed="false">Loupe</button>
         <button type="button" class="lightbox__close" aria-label="Fermer" data-lightbox-close>×</button>
         <img id="lightboxImg" class="lightbox__img" alt="">
+        <div id="magnifier" class="magnifier" aria-hidden="true"></div>
         <figcaption id="lightboxCaption" class="lightbox__caption"></figcaption>
       </figure>
     </div>
@@ -940,8 +974,66 @@
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxCaption = document.getElementById('lightboxCaption');
+        const loupeBtn = lightbox?.querySelector('.lightbox__loupe');
+        const magnifier = document.getElementById('magnifier');
 
-        if (!lightbox || !lightboxImg || !lightboxCaption) return;
+        const LOUPE_ZOOM = 2.6;
+        const LOUPE_SIZE = 180;
+        let loupeEnabled = false;
+
+        if (!lightbox || !lightboxImg || !lightboxCaption || !loupeBtn || !magnifier) return;
+
+        const setLoupe = (enabled) => {
+          loupeEnabled = enabled;
+          loupeBtn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+          loupeBtn.setAttribute('aria-label', enabled ? 'Désactiver la loupe' : 'Activer la loupe');
+          magnifier.style.display = 'none';
+          magnifier.setAttribute('aria-hidden', 'true');
+        };
+
+        const updateLoupeBackground = () => {
+          if (!lightboxImg.src) return;
+          magnifier.style.backgroundImage = `url("${lightboxImg.src}")`;
+        };
+
+        const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+        const moveLoupe = (clientX, clientY) => {
+          if (!loupeEnabled) return;
+
+          const imgRect = lightboxImg.getBoundingClientRect();
+          const content = lightboxImg.closest('.lightbox__content');
+          if (!content) return;
+          const contentRect = content.getBoundingClientRect();
+
+          const inside = clientX >= imgRect.left && clientX <= imgRect.right && clientY >= imgRect.top && clientY <= imgRect.bottom;
+          if (!inside) {
+            magnifier.style.display = 'none';
+            magnifier.setAttribute('aria-hidden', 'true');
+            return;
+          }
+
+          updateLoupeBackground();
+
+          const x = clientX - imgRect.left;
+          const y = clientY - imgRect.top;
+
+          magnifier.style.backgroundSize = `${imgRect.width * LOUPE_ZOOM}px ${imgRect.height * LOUPE_ZOOM}px`;
+          magnifier.style.backgroundPosition = `${-(x * LOUPE_ZOOM - LOUPE_SIZE / 2)}px ${-(y * LOUPE_ZOOM - LOUPE_SIZE / 2)}px`;
+
+          const leftMin = (imgRect.left - contentRect.left) - (LOUPE_SIZE / 2);
+          const topMin = (imgRect.top - contentRect.top) - (LOUPE_SIZE / 2);
+          const leftMax = (imgRect.right - contentRect.left) - (LOUPE_SIZE / 2);
+          const topMax = (imgRect.bottom - contentRect.top) - (LOUPE_SIZE / 2);
+
+          const left = clamp((imgRect.left - contentRect.left) + x - (LOUPE_SIZE / 2), leftMin, leftMax);
+          const top = clamp((imgRect.top - contentRect.top) + y - (LOUPE_SIZE / 2), topMin, topMax);
+
+          magnifier.style.left = `${left}px`;
+          magnifier.style.top = `${top}px`;
+          magnifier.style.display = 'block';
+          magnifier.setAttribute('aria-hidden', 'false');
+        };
 
         const openLightbox = ({ src, alt, caption }) => {
           lightboxImg.src = src;
@@ -950,6 +1042,8 @@
           lightbox.classList.add('is-open');
           lightbox.setAttribute('aria-hidden', 'false');
           document.body.classList.add('no-scroll');
+
+          setLoupe(false);
         };
 
         const closeLightbox = () => {
@@ -958,7 +1052,26 @@
           lightbox.setAttribute('aria-hidden', 'true');
           document.body.classList.remove('no-scroll');
           lightboxImg.src = '';
+
+          setLoupe(false);
         };
+
+        loupeBtn.addEventListener('click', () => {
+          setLoupe(!loupeEnabled);
+        });
+
+        lightboxImg.addEventListener('pointermove', (event) => {
+          moveLoupe(event.clientX, event.clientY);
+        });
+
+        lightboxImg.addEventListener('pointerleave', () => {
+          magnifier.style.display = 'none';
+          magnifier.setAttribute('aria-hidden', 'true');
+        });
+
+        lightboxImg.addEventListener('load', () => {
+          updateLoupeBackground();
+        });
 
         document.addEventListener('click', (event) => {
           const trigger = event.target.closest('[data-lightbox-src]');

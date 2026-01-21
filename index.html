@@ -6,7 +6,7 @@
     <title>Marie Grannec - Artiste Peintre</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
         /* --- VARIABLES & RESET --- */
@@ -56,6 +56,16 @@
             align-items: center;
             gap: 15px;
         }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            max-width: 260px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .logo-img--hero { height: 60px; max-width: 300px; }
 
         .logo-circle {
             width: 45px;
@@ -134,7 +144,7 @@
             min-height: 80vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); /* Image d'ambiance abstraite */
             background-size: cover;
-            background-position: center;
+            background-position: center bottom;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -158,6 +168,12 @@
             font-weight: 300;
         }
 
+        .author {
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: 900;
+        }
+
         /* --- SECTIONS GÉNÉRALES --- */
         section {
             padding: 80px 5%;
@@ -166,6 +182,7 @@
         .section-title {
             text-align: center;
             font-family: var(--font-body);
+            font-weight: 800;
             color: var(--primary-color);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -216,6 +233,7 @@
             font-family: var(--font-title);
             font-size: 1.2rem;
             margin-bottom: 5px;
+            font-weight: 600;
         }
 
         .art-meta {
@@ -358,11 +376,7 @@
 
     <nav>
         <a class="logo" href="index.html" aria-label="Aller à l'accueil">
-            <div class="logo-circle">MG</div>
-            <div class="logo-text">
-                <h1>Marie Grannec</h1>
-                <span>Artiste Peintre</span>
-            </div>
+            <img class="logo-img" src="images/Logo-bleu-pc.png" alt="Marie Grannec — Artiste Peintre">
         </a>
         <div class="nav-links" id="primary-navigation">
             <a href="index.html">Accueil</a>
@@ -384,21 +398,17 @@
     linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)),
     url('images/Geysers-tableau.jpg');
   background-size: cover;
-  background-position: center;
+    background-position: center bottom;
   align-items: flex-start;
   text-align: left;
   padding-left: 5%;
 ">
   
   <a class="logo" href="index.html" aria-label="Aller à l'accueil">
-    <div class="logo-circle" style="border-color: white; color: white;">MG</div>
-    <div class="logo-text">
-        <h1 style="color: white;">Marie Grannec</h1>
-        <span style="color: rgba(255,255,255,0.8);">Artiste Peintre</span>
-    </div>
+        <img class="logo-img logo-img--hero" src="images/Logo-blanc-pc.png" alt="Marie Grannec — Artiste Peintre">
   </a>
 
-  <p style="max-width: 600px;">
+    <p style="max-width: 600px; text-shadow: 0 2px 12px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.65);">
     « Pour Marie Grannec, la peinture est un voyage intemporel où la matière devient fluide,
     où les couleurs intenses ou profondes prennent toute la place, rendant immortels les mondes imaginaires, les destinations lointaines.
     Là où l’homme s’efface, la nature vibrante reprend sa place.
@@ -406,8 +416,6 @@
     <br>
     <span class="author">Marie-Laure Hubert Nasser, auteur</span>
   </p>
-
-  <a href="tableaux.html" class="btn">Voir les œuvres</a>
 </header>
 
 
@@ -499,10 +507,7 @@
         <div class="footer-content">
             <div class="footer-col">
                 <a class="logo" href="index.html" aria-label="Aller à l'accueil">
-                    <div class="logo-circle" style="border-color: #fff; color: #fff;">MG</div>
-                    <div class="logo-text">
-                        <h1 style="color: #fff;">Marie Grannec</h1>
-                    </div>
+                    <img class="logo-img" src="images/Logo-blanc-pc.png" alt="Marie Grannec — Artiste Peintre">
                 </a>
                 <p style="margin-top: 15px; font-size: 0.9rem;">Artiste peintre contemporaine.</p>
             </div>

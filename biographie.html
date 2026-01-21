@@ -7,7 +7,7 @@
   <!-- Même typos que ton index -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <style>
     /* --- VARIABLES & RESET (copié de ton index) --- */
@@ -49,6 +49,14 @@
     }
 
     .logo { display: flex; align-items: center; gap: 15px; }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      max-width: 260px;
+      display: block;
+      object-fit: contain;
+    }
 
     .logo-circle {
       width: 45px;
@@ -138,13 +146,14 @@
       font-size: 3.5rem;
       margin-bottom: 20px;
       font-style: italic;
+      font-weight: 600;
     }
 
     .hero p {
       max-width: 600px;
       font-size: 1.1rem;
       margin-bottom: 30px;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     /* --- SECTIONS GÉNÉRALES (même logique que ton index) --- */
@@ -153,6 +162,7 @@
     .section-title {
       text-align: center;
       font-family: var(--font-body);
+      font-weight: 800;
       color: var(--primary-color);
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -251,7 +261,7 @@
     }
     .quote p { margin-bottom: 12px; text-align: left; }
     .quote .sig {
-      font-weight: 700;
+      font-weight: 900;
       color: #555;
       font-size: 0.9rem;
       margin-top: 6px;
@@ -394,11 +404,7 @@
   <!-- NAV -->
   <nav>
     <a class="logo" href="index.html" aria-label="Aller à l'accueil">
-      <div class="logo-circle">MG</div>
-      <div class="logo-text">
-        <h1>Marie Grannec</h1>
-        <span>Artiste Peintre</span>
-      </div>
+      <img class="logo-img" src="images/Logo-bleu-pc.png" alt="Marie Grannec — Artiste Peintre">
     </a>
 
     <div class="nav-links" id="primary-navigation">
@@ -463,6 +469,7 @@
     <!-- TEXTE + IMAGE -->
     <div class="two-col" style="align-items: center; margin-bottom: 120px;">
       <div class="text">
+        <div class="quote">
         <p>
           « La nuit, son âme se libère et elle s’empare de la toile, œuvrant alors à redéfinir le monde.
           Passionnée d’histoire de l’art, elle redevient étudiante en auditeur libre, à l’école des
@@ -499,13 +506,14 @@
           paysages imaginaires, les destinations lointaines.
         </p>
 
-        <div class="quote">
+        
           <p>
             Là où l’homme s’efface, la nature vibrante reprend sa place.<br>
             Monde perdu ou Eden imaginaire.
           </p>
           <div class="sig">— Marie Laure Hubert Nasser</div>
         </div>
+        
       </div>
 
       <img class="art-round" src="images/57925571556485.jpg" alt="Œuvre abstraite" />
@@ -590,10 +598,7 @@
         <div class="footer-content">
             <div class="footer-col">
                 <a class="logo" href="index.html" aria-label="Aller à l'accueil">
-                    <div class="logo-circle" style="border-color: #fff; color: #fff;">MG</div>
-                    <div class="logo-text">
-                        <h1 style="color: #fff;">Marie Grannec</h1>
-                    </div>
+                  <img class="logo-img" src="images/Logo-blanc-pc.png" alt="Marie Grannec — Artiste Peintre">
                 </a>
                 <p style="margin-top: 15px; font-size: 0.9rem;">Artiste peintre contemporaine.</p>
             </div>
